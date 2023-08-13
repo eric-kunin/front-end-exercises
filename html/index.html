@@ -3,23 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <title>First css</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>First CSS Website Layout</title>
     <style>
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-      }
-      .header {
-        background-color: gray;
+      .header,
+      .footer {
+        background-color: #3b3b3b;
         color: red;
         font-size: 17px;
         padding: 30px;
         text-align: center;
-        font-family: "Courier New", Courier, monospace;
       }
+
+      .footer {
+        margin-top: 20px;
+      }
+
       .topnav::after {
         /* clearfix */
         content: "";
@@ -38,30 +37,57 @@
         text-align: center;
         padding: 15px 17px;
         text-decoration: none;
+        font-size: 25px;
       }
       .clearfix::after {
         content: "";
         display: table;
         clear: both;
       }
-      .column.side {
-        width: 25%;
+      .column.left {
+        float: left;
+        width: 75%;
       }
-      .column.middle {
-        width: 50%;
+      .column.right {
+        float: left;
+        width: 25%;
+        padding-left: 20px;
       }
       .column {
+        /* padding: 24px; */
         float: left;
-        padding: 24px;
+        box-sizing: border-box;
       }
       .topnav a:hover {
         background-color: gray;
         color: blueviolet;
       }
-      @media screen and (max-width: 600px) {
-        .column.side,
-        .column.middle {
+      .card {
+        /* position: relative;
+        display: block; */
+        background-color: white;
+        padding: 20px;
+        margin-top: 20px;
+      }
+      .fakeImg {
+        /* position: absolute; */
+        /* display: flex; */
+        background-color: #808080;
+        width: 100%;
+        padding: 20px;
+      }
+
+      @media screen and (max-width: 800px) {
+        .column.left,
+        .column.right {
           width: 100%;
+          padding: 0px;
+        }
+      }
+      @media screen and (max-width: 600px) {
+        .topnav a {
+          width: 100%;
+          float: none;
         }
       }
     </style>
@@ -74,33 +100,62 @@
       <a href="#">Link</a>
       <a href="#">Link</a>
       <a href="#">Link</a>
-      <a href="#">Link</a>
+      <a href="#" style="float: right">Link</a>
     </div>
     <div class="clearfix">
-      <div class="column side">
-        <h1>Bla</h1>
-        <p>
-          tedtfdtdsfgdf fdsgdfgdf fdgdfgdf dfgdfg dfgdfgdfg dfg fdg fdgdfgdfg
-          dfg dfg dfg dfdfdgf dfg dsf sdfs fsd fsdf sfd dsfsdf
-        </p>
+      <!-- left -->
+      <div class="column left">
+        <!-- card number 1 -->
+        <div class="card">
+          <h2>TITLE HEADING</h2>
+          <h5>Title description, Dec 7, 2017</h5>
+          <div class="fakeImg" style="height: 200px">Image</div>
+          <p>Some text..</p>
+          <p>
+            Sunt in culpa qui officia deserunt mollit anim id est laborum
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco.
+          </p>
+        </div>
+        <!-- card number 2 -->
+        <div class="card">
+          <h2>TITLE HEADING</h2>
+          <h5>Title description, Sep 2, 2017</h5>
+          <div class="fakeImg" style="height: 200px">Image</div>
+          <p>Some text..</p>
+          <p>
+            Sunt in culpa qui officia deserunt mollit anim id est laborum
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco.
+          </p>
+        </div>
       </div>
-      <!-- next -->
-      <div class="column middle">
-        <h1>Bla</h1>
-        <p>
-          tedtfdtdsfgdf fdsgdfgdf fdgdfgdf dfgdfg dfgdfgdfg dfg fdg fdgdfgdfg
-          dfg dfg dfg dfdfdgf dfg dsf sdfs fsd fsdf sfd ssdfsdfsdf
-        </p>
+      <!-- right -->
+      <div class="column right">
+        <!-- card number 3 -->
+        <div class="card">
+          <h3>About Me</h3>
+          <div class="fakeImg" style="height: 100px">Image</div>
+          <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+        </div>
+        <!-- card number 4 -->
+        <div class="card">
+          <h3>Popular Post</h3>
+          <div class="fakeImg" style="height: 100px"><p>Image</p></div>
+          <div class="fakeImg" style="height: 100px"><p>Image</p></div>
+          <div class="fakeImg" style="height: 100px"><p>Image</p></div>
+        </div>
+        <!-- card number 5 -->
+        <div class="card">
+          <h3>Follow Me</h3>
+          <p>Some text..</p>
+        </div>
       </div>
-      <!-- next -->
-      <div class="column side">
-        <h1>Bla</h1>
-        <p>
-          tedtfdtdsfgdf fdsgdfgdf fdgdfgdf dfgdfg dfgdfgdfg dfg fdg fdgdfgdfg
-          dfg dfg dfg dfdfdgf dfg dsf sdfs fsd fsdf sfd sdfsdfsdf ds sdf s Test
-          Test
-        </p>
-      </div>
+    </div>
+    <div class="footer">
+      <h2>Footer</h2>
     </div>
   </body>
 </html>
