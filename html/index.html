@@ -11,7 +11,6 @@
       }
       body {
         margin: 0;
-        background-color: yellow;
       }
       .header {
         background-color: gray;
@@ -45,9 +44,14 @@
         display: table;
         clear: both;
       }
+      .column.side {
+        width: 25%;
+      }
+      .column.middle {
+        width: 50%;
+      }
       .column {
         float: left;
-        width: 33.33%;
         padding: 24px;
       }
       .topnav a:hover {
@@ -55,8 +59,9 @@
         color: blueviolet;
       }
       @media screen and (max-width: 600px) {
-        .column {
-          width: 100vw;
+        .column.side,
+        .column.middle {
+          width: 100%;
         }
       }
     </style>
@@ -69,9 +74,10 @@
       <a href="#">Link</a>
       <a href="#">Link</a>
       <a href="#">Link</a>
+      <a href="#">Link</a>
     </div>
     <div class="clearfix">
-      <div class="column">
+      <div class="column side">
         <h1>Bla</h1>
         <p>
           tedtfdtdsfgdf fdsgdfgdf fdgdfgdf dfgdfg dfgdfgdfg dfg fdg fdgdfgdfg
@@ -79,7 +85,7 @@
         </p>
       </div>
       <!-- next -->
-      <div class="column">
+      <div class="column middle">
         <h1>Bla</h1>
         <p>
           tedtfdtdsfgdf fdsgdfgdf fdgdfgdf dfgdfg dfgdfgdfg dfg fdg fdgdfgdfg
@@ -87,7 +93,7 @@
         </p>
       </div>
       <!-- next -->
-      <div class="column">
+      <div class="column side">
         <h1>Bla</h1>
         <p>
           tedtfdtdsfgdf fdsgdfgdf fdgdfgdf dfgdfg dfgdfgdfg dfg fdg fdgdfgdfg
