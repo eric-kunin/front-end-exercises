@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/form.css" />
+    <title>First CSS Form</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #a6c1ff;
+        font-family: "Courier New", Courier, monospace;
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-top: 3%;
+      }
+      .clearfix::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      .container {
+        background-color: #dbf3ff;
+        padding: 25px;
+        border-radius: 10px;
+      }
+      .col-25 {
+        float: left;
+        width: 25%;
+        margin-top: 6px;
+      }
+
+      .col-75 {
+        float: left;
+        width: 75%;
+        margin-top: 6px;
+      }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      input[type="text"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+      }
+
+      label {
+        padding: 12px 12px 12px 48px;
+        /* when using display: inline-block;, the element does not 
+        automatically 
+        force the following 
+        element to start on a new line. */
+        display: inline-block;
+      }
+
+      input[type="submit"] {
+        background-color: #04aa6d;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        float: right;
+      }
+      @media screen and (max-width: 760px) {
+        .col-25,
+        .col-75,
+        input[type="submit"] {
+          width: 100%;
+          margin-top: 0;
+        }
+      }
+      @media screen and (max-width: 1200px) {
+        label {
+          padding: 2% 2% 2% 2%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form action="/action_page.php">
+        <div class="clearfix">
+          <div class="col-25">
+            <label for="fname">First Name: </label>
+          </div>
+          <div class="col-75">
+            <input
+              type="text"
+              id="fname"
+              name="fname"
+              placeholder="Your name..."
+            />
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="col-25">
+            <label for="lname">Last Name: </label>
+          </div>
+          <div class="col-75">
+            <input
+              type="text"
+              id="lname"
+              name="lname"
+              placeholder="Your last name..."
+            />
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="col-25">
+            <label for="country">Country: </label>
+          </div>
+          <div class="col-75">
+            <select id="country" name="country">
+              <option value="australia">Israel</option>
+              <option value="canada">Canada</option>
+              <option value="usa">USA</option>
+            </select>
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="col-25">
+            <label for="subject">Subject: </label>
+          </div>
+          <div class="col-75">
+            <textarea
+              id="subject"
+              name="subject"
+              placeholder="Write something..."
+              style="height: 200px"
+            ></textarea>
+          </div>
+        </div>
+        <br />
+        <div class="clearfix">
+          <input type="submit" value="Submit" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
