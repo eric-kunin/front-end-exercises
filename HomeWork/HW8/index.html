@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/repairs.css" />
+    <script defer src="js/repairs.js"></script>
+    <title>Repairs</title>
+  </head>
+  <body>
+    <h1>Repairs to drones:</h1>
+    <hr />
+    <div class="Box">
+      <form id="myForm" action="javascript:handleData()">
+        <label for="userName">Please enter your name: </label>
+        <input type="text" id="userName" placeholder="My name is..." />
+        <br /><br />
+        <label for="userName">Please enter phone number: </label>
+        <input type="text" id="userPhone" placeholder="My phone number is..." />
+        <br /><br />
+        <label for="userAddress">Please enter your address: </label>
+        <input
+          type="text"
+          id="userAddress"
+          placeholder="Enter your address: "
+        />
+        <br /><br />
+        <label for="userType">Are you a VIP customer?</label>
+        <input type="checkbox" id="userType" name="userType" value="userType" />
+        <br /><br />
+        <label for="droneCompany">The drone company:</label>
+        <select name="droneCompany" id="droneCompany">
+          <option value="skyHigh">Sky High Drones</option>
+          <option selected value="aerial">Aerial Drones</option>
+          <option value="photographyCo">The Drone Photography Co</option>
+          <option value="blue">Blue Drone Store</option>
+        </select>
+        <p>The drone model:</p>
+        <!-- 1 -->
+        <input
+          type="radio"
+          id="smallDrone"
+          name="droneModel"
+          value="smallDrone"
+        />
+        <label for="smallDrone">Small Drone</label><br />
+        <!-- 2 -->
+        <input
+          type="radio"
+          id="microDrone"
+          name="droneModel"
+          value="microDrone"
+        />
+        <label for="microDrone">Micro Drone</label><br />
+        <!-- 3 -->
+        <input
+          type="radio"
+          id="tacticalDrone"
+          name="droneModel"
+          value="tacticalDrone"
+        />
+        <label for="tacticalDrone">Tactical Drone</label><br />
+        <!-- 4 -->
+        <input
+          type="radio"
+          id="reconnaissanceDrone"
+          name="droneModel"
+          value="reconnaissanceDrone"
+        />
+        <label for="reconnaissanceDrone">Reconnaissance Drone</label
+        ><br /><br />
+        <textarea
+          id="describeProblem"
+          rows="5"
+          cols="40"
+          placeholder="Describe the problem here..."
+        ></textarea>
+        <br /><br />
+        <label for="warrantyType">Type of warranty:</label>
+        <select id="warrantyType">
+          <option value="normalWarranty">Normal warranty</option>
+          <option value="extendedWarranty">Extended warranty</option>
+          <option value="insuranceWarranty" disabled>
+            Warranty with insurance
+          </option>
+          <option value="withoutWarranty" selected>Without warranty</option>
+        </select>
+        <br /><br />
+        <input type="submit" value="Add repair now!" />
+        <input type="reset" />
+      </form>
+    </div>
+    <br /><br />
+    <table>
+      <thead>
+        <tr>
+          <th>Date Received:</th>
+          <th>Expected delivery:</th>
+          <th>Number of days left:</th>
+          <th>the customer's name:</th>
+          <th>The customer's phone</th>
+          <th>Treatment description:</th>
+        </tr>
+      </thead>
+      <tbody id="userData"></tbody>
+    </table>
+    <div id="info"></div>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+html,
+body {
+  /* fix white sides */
+  /* it is to make sure that the background image will take full height */
+  height: 100%;
+}
+
+body {
+  background: url("../img/field.png");
+  /* fix white side */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.ball {
+  margin-inline: auto;
+  display: block;
+  position: absolute;
+  inset: auto 0 50px 0;
+  scale: 1;
+}
+.ball.hover {
+  animation: goal 5s forwards linear;
+}
+
+@keyframes goal {
+  50% {
+    inset: auto 0 500px 300px;
+    scale: 0.5;
+  }
+  100% {
+    inset: auto 0 150px 0;
+    scale: 0.2;
+  }
+}
