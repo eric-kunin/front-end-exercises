@@ -1,0 +1,39 @@
+body{
+    text-align: center;
+    background-image: linear-gradient(45deg, cyan,white);
+}
+
+.Box{
+    border : 1px solid black;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width : 400px;
+    background-color: white;
+    padding :10px;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+  }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  /* img:hover ~ #deleteBtn {
+    display: block !important;
+} */
+
+
+  
