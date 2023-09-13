@@ -6,17 +6,18 @@
     <title>First JS</title>
   </head>
   <body>
-    <p id="demo1"></p>
-    <p id="demo2"></p>
+    <button onclick="myFunction()">Click</button>
+    <p id="demo"></p>
     <script>
-      let index = 0;
-      let text = "";
-
-      do {
-        text += "<br>The number now: " + index;
-        index++;
-      } while (index < 10);
-      document.getElementById("demo1").innerHTML = text;
+      function myFunction() {
+        var text;
+        if (confirm("Press a button!")) {
+          text = "You pressed OK!";
+        } else {
+          text = "You pressed Cancel!";
+        }
+        document.getElementById("demo").innerHTML = text;
+      }
     </script>
   </body>
 </html>
