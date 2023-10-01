@@ -15,7 +15,7 @@
   <body>
     <div class="container mt-5">
       <h2 class="custom-form-container">Stock calculator:</h2>
-      <form id="form" class="was-validated custom-form-container">
+      <form id="stockForm" class="was-validated custom-form-container">
         <div class="row">
           <div class="col-md-4">
             <!-- price -->
@@ -130,15 +130,15 @@
           <!-- Amount of money to risk is recommended -->
           <div class="row">
             <div class="col-md-8">
-              <!-- price -->
+              <!-- Financial -->
               <div class="form-group">
-                <label for="stockPrice"
+                <label for="stockFinancial"
                   >Financial account size for stock trading:</label
                 ><br />
                 <input
                   type="number"
-                  id="stockPrice"
-                  name="stockPrice"
+                  id="stockFinancial"
+                  name="stockFinancial"
                   step="0.01"
                   class="form-control margin-down"
                   placeholder="3000"
@@ -148,7 +148,10 @@
             </div>
           </div>
         </div>
-        <input type="submit" class="btn btn-success" value="Calculate now!" />
+        <div class="button-container">
+          <input type="submit" class="btn btn-success" value="Calculate now!" />
+          <input type="reset" class="btn btn-danger" value="Reset" />
+        </div>
       </form>
       <div class="stockResult table-responsive-md">
         <table class="table custom-table table-hover">
