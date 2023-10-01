@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+body {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh;
+    background: #e3f2fd;
+}
+
+/* Custom CSS for table spacing and width */
+.custom-table {
+    border-collapse: separate;
+    border-spacing: 15px 15px !important;
+}
+
+/* Set the table width using Bootstrap classes */
+table.custom-table {
+    width: 75%; /* Adjust the width as needed */
+}
+
+.custom-table tr {
+    text-align: center;
+    vertical-align: middle;
+}
+/* Custom CSS to remove table border and outline */
+.custom-table {
+    border: none; /* Remove the border */
+    outline: none; /* Remove the outline */
+}
+
+/* Optional: To remove cell borders within the table */
+.custom-table td, .custom-table th {
+    border: none; /* Remove cell borders */
+}
+.custom-form-container {
+    margin-left: 15px; /* Adjust this value to your desired amount */
+  }
