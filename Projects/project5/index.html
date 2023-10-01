@@ -14,7 +14,7 @@
   </head>
   <body>
     <div class="container mt-5">
-      <h2>Stock calculator:</h2>
+      <h2 class="custom-form-container">Stock calculator:</h2>
       <form id="form" class="was-validated custom-form-container">
         <div class="row">
           <div class="col-md-4">
@@ -26,14 +26,13 @@
                 id="stockPrice"
                 name="stockPrice"
                 step="0.01"
-                class="form-control"
+                class="form-control margin-down"
                 placeholder="100"
                 min="0"
                 required
               />
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
-              <br />
             </div>
           </div>
           <div class="col-md-4">
@@ -45,21 +44,20 @@
                 id="stockStopLose"
                 name="stockStopLose"
                 step="0.01"
-                class="form-control"
+                class="form-control margin-down"
                 placeholder="90"
                 min="0"
                 required
               />
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
-              <br />
             </div>
           </div>
         </div>
         <!-- risk money -->
         <div class="row">
-          <div class="col-md-4">
-            <div class="form-group">
+          <div class="col-md-5">
+            <div class="form-group margin-down">
               <label for="stockRiskMoney"
                 >Total amount of money to risk for shares: 50 (without $) </label
               ><br />
@@ -75,14 +73,17 @@
               />
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
-              <br />
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <!-- risk -->
             <div class="form-group">
               <label for="stockRisk">Chance risk ratio (R) per share:</label>
-              <select name="stockRisk" id="stockRisk" class="form-control">
+              <select
+                name="stockRisk"
+                id="stockRisk"
+                class="form-control margin-down"
+              >
                 <!-- <option value="0.5">1:0.5 R</option>
               <option value="1.0">1:1.0 R</option> -->
                 <option value="1.5" selected>1:1.5</option>
@@ -92,8 +93,8 @@
                 <option value="3.5">1:3.5</option>
                 <option value="4.0">1:4.0</option>
                 <option value="4.5">1:4.5</option>
-                <option value="5.0">1:5.0</option></select
-              ><br />
+                <option value="5.0">1:5.0</option>
+              </select>
             </div>
           </div>
         </div>
@@ -105,7 +106,7 @@
               <select
                 name="stockCurrency"
                 id="stockCurrency"
-                class="form-control"
+                class="form-control margin-down"
               >
                 <option value="United States Dollar" selected>USD ($)</option>
                 <option value="Euro">EUR (€)</option>
@@ -124,7 +125,6 @@
                 <option value="Hong Kong Dollar">HKD (HK$)</option>
                 <option value="Israeli New Shekel">ILS (₪)</option>
               </select>
-              <br />
             </div>
           </div>
           <!-- Amount of money to risk is recommended -->
@@ -140,17 +140,16 @@
                   id="stockPrice"
                   name="stockPrice"
                   step="0.01"
-                  class="form-control"
+                  class="form-control margin-down"
                   placeholder="3000"
                   min="0"
-                /><br />
+                />
               </div>
             </div>
           </div>
         </div>
         <input type="submit" class="btn btn-success" value="Calculate now!" />
       </form>
-      <br />
       <div class="stockResult table-responsive-md">
         <table class="table custom-table table-hover">
           <tbody>

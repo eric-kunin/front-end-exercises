@@ -42,3 +42,6 @@ table.custom-table {
 .custom-form-container {
     margin-left: 15px; /* Adjust this value to your desired amount */
   }
+.margin-down {
+    margin-bottom: 10px;
+}
