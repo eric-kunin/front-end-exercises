@@ -1,4 +1,6 @@
 
-let head: number = numbers[2,3]; // no error
-
-console.log(head);
+const car : { type : string, number?: number } = {
+    type : 'SSSS'
+};
+car.number = 123;
+console.log(car.number);
