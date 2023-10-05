@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
       TakeProfit.textContent = formatNumber(stockTakeProfit) + SymbolCurrency;
       ProfitEarn.textContent = stockEarnPerTrade + SymbolCurrency;
       RiskMoney.textContent = stockRiskMoney + SymbolCurrency;
-      Power.textContent = stockPrice * Q + SymbolCurrency;
+      Power.textContent = formatNumber(stockPrice * Q) + SymbolCurrency;
       isBelow.textContent = (stockPrice * Q <= temp_stockFinancial) ? "Yes" : "No";
       Currency.textContent = stockCurrency;
       TypeCurrency.textContent = CurrencyObj[stockCurrency];
