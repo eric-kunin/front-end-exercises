@@ -66,6 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
       let TakeProfit = document.getElementById("TakeProfit");
       let ProfitEarn = document.getElementById("ProfitEarn");
       let RiskMoney = document.getElementById("RiskMoney");
+      let Power = document.getElementById("Power");
+      let isBelow = document.getElementById("isBelow");
       let Currency = document.getElementById("Currency");
       let TypeCurrency = document.getElementById("TypeCurrency");
       let RiskRecommended = document.getElementById("RiskRecommended");
@@ -77,9 +79,9 @@ document.addEventListener("DOMContentLoaded", function () {
       let Q = Math.round(stockRiskMoney / SL);
       // stockEarnPerTrade = 50 * 1.5 = 75
       let stockEarnPerTrade = stockRiskMoney * stockRisk;
-      console.log(stockEarnPerTrade);
       let stockTakeProfit; // Declare the variable outside of the if-else blocks
       let stockTypePosition;
+      let temp_stockFinancial = stockFinancial;
       if (stockPrice >= stockStopLose) {
         // stockTakeProfit = 100 + 10 * 1.5 = 115 as long
         stockTakeProfit = stockPrice + SL * stockRisk;
@@ -118,10 +120,11 @@ document.addEventListener("DOMContentLoaded", function () {
       TakeProfit.textContent = formatNumber(stockTakeProfit) + SymbolCurrency;
       ProfitEarn.textContent = stockEarnPerTrade + SymbolCurrency;
       RiskMoney.textContent = stockRiskMoney + SymbolCurrency;
+      Power.textContent = stockPrice * Q + SymbolCurrency;
+      isBelow.textContent = (stockPrice * Q <= temp_stockFinancial) ? "Yes" : "No";
       Currency.textContent = stockCurrency;
       TypeCurrency.textContent = CurrencyObj[stockCurrency];
       RiskRecommended.textContent = stockFinancial + SymbolCurrency;
       RiskRatio.textContent = "1:" + stockRisk;
-
     });
   });
