@@ -52,6 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
       let stockRisk = parseFloat(document.getElementById("stockRisk").value);
       let stockCurrency = document.getElementById("stockCurrency").value;
       let stockFinancial = parseFloat(document.getElementById("stockFinancial").value);
+      let stockQuantity = document.getElementById("stockQuantity").value;
+      let checkbox = document.getElementById("switchCheckbox");
       // Get the values of the td from table
       // Get a reference to the table element
       let table = document.querySelector('table');
@@ -74,9 +76,27 @@ document.addEventListener("DOMContentLoaded", function () {
       let RiskRatio = document.getElementById("RiskRatio");
       // Define variables for stock calculation
       // SL = 100 - 90 = 10
-      let SL = Math.abs(stockPrice - stockStopLose);
-      // Q is Quantity. 50 / 10 = 5 stocks or Q
-      let Q = Math.round(stockRiskMoney / SL);
+      let SL,Q;
+      // Check if the checkbox is checked
+      if (isNaN(stockStopLose)) {
+        if (checkbox.checked) {
+          // Checkbox is checked as long
+          // This code will run if stockStopLose is NaN
+          stockStopLose = stockPrice - (stockRiskMoney / stockQuantity);
+          SL = Math.abs(stockPrice - stockStopLose);
+          Q = stockQuantity;
+        } else {
+          // Checkbox is not checked as sort
+          stockStopLose = stockPrice + (stockRiskMoney / stockQuantity);
+          SL = Math.abs(stockPrice - stockStopLose);
+          Q = stockQuantity;
+        }
+    } else {
+        // This code will run if stockStopLose is a valid number
+        SL = Math.abs(stockPrice - stockStopLose);
+        // Q is Quantity. 50 / 10 = 5 stocks or Q
+        Q = Math.round(stockRiskMoney / SL);
+    }
       // stockEarnPerTrade = 50 * 1.5 = 75
       let stockEarnPerTrade = stockRiskMoney * stockRisk;
       let stockTakeProfit; // Declare the variable outside of the if-else blocks
@@ -111,11 +131,17 @@ document.addEventListener("DOMContentLoaded", function () {
           trElements[i].className = 'table-danger';
         }
       }
+
+      // Get a reference to the input element by its ID
+      let inputStockStopLose = document.getElementById("stockStopLose");
+      // Set the value of the input element
+      inputStockStopLose.value = stockStopLose;
+
       let SymbolCurrency = CurrencyObj[stockCurrency];
       SymbolCurrency = extractTextWithinParentheses(SymbolCurrency); // "¥"
       TypePosition.textContent = stockTypePosition;
       Price.textContent = stockPrice + SymbolCurrency;
-      StopLose.textContent = stockStopLose + SymbolCurrency;
+      StopLose.textContent = formatNumber(stockStopLose) + SymbolCurrency;
       Quantity.textContent = Q;
       TakeProfit.textContent = formatNumber(stockTakeProfit) + SymbolCurrency;
       ProfitEarn.textContent = stockEarnPerTrade + SymbolCurrency;
