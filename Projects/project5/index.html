@@ -95,7 +95,8 @@
                 value="1.5"
                 min="0"
                 max="5"
-                required
+                data-bs-toggle="tooltip"
+                data-bs-original-title="Do not enter a number like 1.5 or 2 to find RRR, if you have a Take Profit price"
               />
               <!-- <select
                 name="stockRisk"
@@ -124,7 +125,7 @@
                 id="stockQuantity"
                 name="stockQuantity"
                 step="1"
-                class="form-control"
+                class="form-control margin-down"
                 data-bs-toggle="tooltip"
                 data-bs-original-title="if you don't know SL and want to
                 find SL"
@@ -149,6 +150,25 @@
                 data-offstyle="danger"
                 checked
                 data-width="145"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Take profit find Risk/Reward Ratio -->
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group margin-down">
+              <label for="stockFindRRR"
+                >Enter Take Profit price to find R: (Risk/Reward Ratio)</label
+              ><br />
+              <input
+                type="number"
+                id="stockFindRRR"
+                name="stockFindRRR"
+                step="0.01"
+                class="form-control"
+                placeholder="115"
+                min="0"
               />
             </div>
           </div>

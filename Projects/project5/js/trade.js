@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let stockStopLose = parseFloat(document.getElementById("stockStopLose").value);
       let stockRiskMoney = parseFloat(document.getElementById("stockRiskMoney").value);
       let stockRisk = parseFloat(document.getElementById("stockRisk").value);
+      let stockFindRRR = parseFloat(document.getElementById("stockFindRRR").value);
       let stockCurrency = document.getElementById("stockCurrency").value;
       let stockFinancial = parseFloat(document.getElementById("stockFinancial").value);
       let stockQuantity = document.getElementById("stockQuantity").value;
@@ -97,11 +98,17 @@ document.addEventListener("DOMContentLoaded", function () {
         // Q is Quantity. 50 / 10 = 5 stocks or Q
         Q = Math.round(stockRiskMoney / SL);
     }
-      // stockEarnPerTrade = 50 * 1.5 = 75
-      let stockEarnPerTrade = stockRiskMoney * stockRisk;
       let stockTakeProfit; // Declare the variable outside of the if-else blocks
       let stockTypePosition;
       let temp_stockFinancial = stockFinancial;
+      let RRR;
+      // stockFindRRR is take profile price to find RRR
+      if (isNaN(stockRisk)){
+        RRR = Math.abs((stockFindRRR-stockPrice) / SL);
+        stockRisk = RRR;
+      }
+      // stockEarnPerTrade = 50 * 1.5 = 75
+      let stockEarnPerTrade = stockRiskMoney * stockRisk;
       if (stockPrice >= stockStopLose) {
         // stockTakeProfit = 100 + 10 * 1.5 = 115 as long
         stockTakeProfit = stockPrice + SL * stockRisk;
@@ -111,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         stockTakeProfit = stockPrice - SL * stockRisk;
         stockTypePosition = "Sort";
       }
+      
       if (stockFinancial >= 100) {
         stockFinancial = stockFinancial / 100
       } else {
@@ -134,8 +142,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Get a reference to the input element by its ID
       let inputStockStopLose = document.getElementById("stockStopLose");
+      let inputStockRisk = document.getElementById("stockRisk");
       // Set the value of the input element
-      inputStockStopLose.value = stockStopLose;
+      inputStockStopLose.value = formatNumber(stockStopLose);
+      inputStockRisk.value = formatNumber(RRR);
 
       let SymbolCurrency = CurrencyObj[stockCurrency];
       SymbolCurrency = extractTextWithinParentheses(SymbolCurrency); // "¥"
@@ -144,13 +154,13 @@ document.addEventListener("DOMContentLoaded", function () {
       StopLose.textContent = formatNumber(stockStopLose) + SymbolCurrency;
       Quantity.textContent = Q;
       TakeProfit.textContent = formatNumber(stockTakeProfit) + SymbolCurrency;
-      ProfitEarn.textContent = stockEarnPerTrade + SymbolCurrency;
+      ProfitEarn.textContent = formatNumber(stockEarnPerTrade) + SymbolCurrency;
       RiskMoney.textContent = stockRiskMoney + SymbolCurrency;
       Power.textContent = formatNumber(stockPrice * Q) + SymbolCurrency;
       isBelow.textContent = (stockPrice * Q <= temp_stockFinancial) ? "Yes" : "No";
       Currency.textContent = stockCurrency;
       TypeCurrency.textContent = CurrencyObj[stockCurrency];
       RiskRecommended.textContent = stockFinancial + SymbolCurrency;
-      RiskRatio.textContent = "1:" + stockRisk;
+      RiskRatio.textContent = "1:" + formatNumber(stockRisk);
     });
   });
