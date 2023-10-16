@@ -76,20 +76,20 @@ document.addEventListener("DOMContentLoaded", function () {
       let RiskRecommended = document.getElementById("RiskRecommended");
       let RiskRatio = document.getElementById("RiskRatio");
       // Define variables for stock calculation
-      // SL = 100 - 90 = 10
-      let SL,Q;
+      // RangeBetween = 100 - 90 = 10
+      let RangeBetween,Q;
       // Check if the checkbox is checked
       if (isNaN(stockStopLose)) {
         if (checkbox.checked) {
           // Checkbox is checked as long
           // This code will run if stockStopLose is NaN
           stockStopLose = stockPrice - (stockRiskMoney / stockQuantity);
-          SL = Math.abs(stockPrice - stockStopLose);
+          RangeBetween = Math.abs(stockPrice - stockStopLose);
           Q = stockQuantity;
         } else {
           // Checkbox is not checked as sort
           stockStopLose = stockPrice + (stockRiskMoney / stockQuantity);
-          SL = Math.abs(stockPrice - stockStopLose);
+          RangeBetween = Math.abs(stockPrice - stockStopLose);
           Q = stockQuantity;
         }
     } else {
