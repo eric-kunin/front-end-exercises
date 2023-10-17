@@ -1,44 +1,5 @@
-const CurrencyObj = {
-  "United States Dollar": "USD ($)",
-  "Euro": "EUR (€)",
-  "Japanese Yen": "JPY (¥)",
-  "British Pound Sterling": "GBP (£)",
-  "Swiss Franc": "CHF (Fr)",
-  "Canadian Dollar": "CAD (C$)",
-  "Australian Dollar": "AUD (A$)",
-  "New Zealand Dollar": "NZD (NZ$)",
-  "Chinese Yuan": "CNY (¥)",
-  "Indian Rupee": "INR (₹)",
-  "South African Rand": "ZAR (R)",
-  "Brazilian Real": "BRL (R$)",
-  "Mexican Peso": "MXN (Mex$)",
-  "Singapore Dollar": "SGD (S$)",
-  "Hong Kong Dollar": "HKD (HK$)",
-  "Israeli New Shekel": "ILS (₪)"
-};   
-
-// Function to extract text within parentheses
-function extractTextWithinParentheses(inputString) {
-  // Use a regular expression to match text within parentheses
-  const matches = inputString.match(/\(([^)]+)\)/);
-  
-  // Check if there is a match
-  if (matches && matches.length > 1) {
-    // Return the text within parentheses (group 1 of the match)
-    return matches[1];
-  }
-  
-  // If no match is found, return an empty string or any default value you prefer
-  return "";
-}
-
-function formatNumber(number) {
-  // Round the number to two decimal places and convert it to a string
-  let formattedNumber = number.toFixed(2);
-
-  // Convert the string back to a number to remove leading zeros
-  return parseFloat(formattedNumber);
-}
+import { CurrencyObj } from './currency.js';
+import { extractTextWithinParentheses, formatNumber } from './functions.js';
 
 // the "DOMContentLoaded" event to occur before executing the provided function.
 document.addEventListener("DOMContentLoaded", function () {
@@ -46,15 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("stockForm").addEventListener("submit", function (e) {
       e.preventDefault(); // Prevent the form from actually submitting
       // Get the values of the input fields
-      let stockPrice = parseFloat(document.getElementById("stockPrice").value);
-      let stockStopLose = parseFloat(document.getElementById("stockStopLose").value);
-      let stockRiskMoney = parseFloat(document.getElementById("stockRiskMoney").value);
-      let stockRisk = parseFloat(document.getElementById("stockRisk").value);
-      let stockFindRRR = parseFloat(document.getElementById("stockFindRRR").value);
-      let stockCurrency = document.getElementById("stockCurrency").value;
-      let stockFinancial = parseFloat(document.getElementById("stockFinancial").value);
-      let stockQuantity = document.getElementById("stockQuantity").value;
-      let checkbox = document.getElementById("switchCheckbox");
+      let stockPrice = parseFloat(document.getElementById("stockPrice").value); // Stock price:
+      let stockStopLose = parseFloat(document.getElementById("stockStopLose").value); // Stop lose:
+      let stockRiskMoney = parseFloat(document.getElementById("stockRiskMoney").value); // Total amount of money to risk for shares: 50 (without $):
+      let stockChanceRiskRatio = parseFloat(document.getElementById("stockChanceRiskRatio").value); // Chance risk ratio (R) per share:
+      let stockEnterTakeProfit = parseFloat(document.getElementById("stockEnterTakeProfit").value); // Enter Take Profit price to find R: (Risk/Reward Ratio):
+      let stockCurrency = document.getElementById("stockCurrency").value; // Currency
+      let stockFinancial = parseFloat(document.getElementById("stockFinancial").value); // 3000$
+      let stockQuantity = document.getElementById("stockQuantity").value; // Enter the quantity you have:
+      let checkbox = document.getElementById("switchCheckbox"); // checkbox: long or short
+      // Get a reference to the input element by its ID
+      let inputStockStopLose = document.getElementById("stockStopLose");
+      let inputStockChanceRiskRatio = document.getElementById("stockChanceRiskRatio");
       // Get the values of the td from table
       // Get a reference to the table element
       let table = document.querySelector('table');
@@ -80,42 +44,55 @@ document.addEventListener("DOMContentLoaded", function () {
       let RangeBetween,Q;
       // Check if the checkbox is checked
       if (isNaN(stockStopLose)) {
-        if (checkbox.checked) {
-          // Checkbox is checked as long
+        if (checkbox.checked) { // Checkbox is checked as long
           // This code will run if stockStopLose is NaN
+          // stockStopLose = 100 - (50 / 5)
+          // stockStopLose = 90
           stockStopLose = stockPrice - (stockRiskMoney / stockQuantity);
+          // RangeBetween = 100 - 90
+          // RangeBetween = 10
           RangeBetween = Math.abs(stockPrice - stockStopLose);
+          // Q = 5
           Q = stockQuantity;
-        } else {
-          // Checkbox is not checked as sort
+        } else { // Checkbox is not checked as sort
+          // stockStopLose = 100 + (50 / 5)
+          // stockStopLose = 110
           stockStopLose = stockPrice + (stockRiskMoney / stockQuantity);
+          // RangeBetween = 100 - 110
           RangeBetween = Math.abs(stockPrice - stockStopLose);
+          // Q = 5
           Q = stockQuantity;
         }
     } else {
         // This code will run if stockStopLose is a valid number
-        SL = Math.abs(stockPrice - stockStopLose);
+        // RangeBetween = 100 - 90 or 100 - 110
+        RangeBetween = Math.abs(stockPrice - stockStopLose);
         // Q is Quantity. 50 / 10 = 5 stocks or Q
-        Q = Math.round(stockRiskMoney / SL);
+        Q = Math.round(stockRiskMoney / RangeBetween);
     }
-      let stockTakeProfit; // Declare the variable outside of the if-else blocks
-      let stockTypePosition;
-      let temp_stockFinancial = stockFinancial;
-      let RRR;
+      let stockTakeProfit; // calculate take profit 
+      let stockTypePosition; // long or sort
+      let temp_stockFinancial = stockFinancial; // temp variable
+      let RR; // Risk ratio 
+      let temp_stockTakeProfit = stockTakeProfit;
+      // Use the logical OR operator to assign temp_stockTakeProfit if stockEnterTakeProfit is NaN
+      stockEnterTakeProfit = isNaN(stockEnterTakeProfit) ? temp_stockTakeProfit : stockEnterTakeProfit;
       // stockFindRRR is take profile price to find RRR
-      if (isNaN(stockRisk)){
-        RRR = Math.abs((stockFindRRR-stockPrice) / SL);
-        stockRisk = RRR;
-      }
+      if (isNaN(stockChanceRiskRatio)){
+        // RR = (115 - 100) / 10
+        RR = Math.abs((stockEnterTakeProfit - stockPrice) / RangeBetween);
+        stockChanceRiskRatio = RR;
+      } 
       // stockEarnPerTrade = 50 * 1.5 = 75
-      let stockEarnPerTrade = stockRiskMoney * stockRisk;
+      let stockEarnPerTrade = stockRiskMoney * stockChanceRiskRatio;
+
       if (stockPrice >= stockStopLose) {
         // stockTakeProfit = 100 + 10 * 1.5 = 115 as long
-        stockTakeProfit = stockPrice + SL * stockRisk;
+        stockTakeProfit = stockPrice + SL * stockChanceRiskRatio;
         stockTypePosition = "Long";
       } else {
         // stockTakeProfit = 100 - 10 * 1.5 = 85 as sort
-        stockTakeProfit = stockPrice - SL * stockRisk;
+        stockTakeProfit = stockPrice - SL * stockChanceRiskRatio;
         stockTypePosition = "Sort";
       }
       
@@ -140,12 +117,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      // Get a reference to the input element by its ID
-      let inputStockStopLose = document.getElementById("stockStopLose");
-      let inputStockRisk = document.getElementById("stockRisk");
       // Set the value of the input element
       inputStockStopLose.value = formatNumber(stockStopLose);
-      inputStockRisk.value = formatNumber(RRR);
+      inputStockChanceRiskRatio.value = formatNumber(stockChanceRiskRatio);
 
       let SymbolCurrency = CurrencyObj[stockCurrency];
       SymbolCurrency = extractTextWithinParentheses(SymbolCurrency); // "¥"
@@ -156,6 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
       TakeProfit.textContent = formatNumber(stockTakeProfit) + SymbolCurrency;
       ProfitEarn.textContent = formatNumber(stockEarnPerTrade) + SymbolCurrency;
       RiskMoney.textContent = stockRiskMoney + SymbolCurrency;
+      // Power.textContent = 100 * 5
       Power.textContent = formatNumber(stockPrice * Q) + SymbolCurrency;
       isBelow.textContent = (stockPrice * Q <= temp_stockFinancial) ? "Yes" : "No";
       Currency.textContent = stockCurrency;
