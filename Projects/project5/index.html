@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/trade.css" />
-    <script src="./js/trade.js" defer></script>
+    <script type="module" src="./js/trade.js" defer></script>
+    <!-- <script type="module" src="./js/currency.js" defer></script>
+    <script type="module" src="./js/functions.js" defer></script> -->
     <link
       href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
       rel="stylesheet"
@@ -84,11 +86,13 @@
           <div class="col-md-3">
             <!-- risk -->
             <div class="form-group">
-              <label for="stockRisk">Chance risk ratio (R) per share:</label>
+              <label for="stockChanceRiskRatio"
+                >Chance risk ratio (R) per share:</label
+              >
               <input
                 type="number"
                 name="stockRisk"
-                id="stockRisk"
+                id="stockChanceRiskRatio"
                 class="form-control margin-down"
                 step="0.01"
                 placeholder="1.5"
@@ -96,7 +100,7 @@
                 min="0"
                 max="5"
                 data-bs-toggle="tooltip"
-                data-bs-original-title="Do not enter a number like 1.5 or 2 to find RRR, if you have a Take Profit price"
+                data-bs-original-title="Do not enter a number like 1.5 or 2 to find RR, if you have a Take Profit price"
               />
               <!-- <select
                 name="stockRisk"
@@ -158,13 +162,13 @@
         <div class="row">
           <div class="col-md-5">
             <div class="form-group margin-down">
-              <label for="stockFindRRR"
+              <label for="stockEnterTakeProfit"
                 >Enter Take Profit price to find R: (Risk/Reward Ratio)</label
               ><br />
               <input
                 type="number"
-                id="stockFindRRR"
-                name="stockFindRRR"
+                id="stockEnterTakeProfit"
+                name="stockEnterTakeProfit"
                 step="0.01"
                 class="form-control"
                 placeholder="115"
