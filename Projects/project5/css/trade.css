@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
 
+/* @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Poppins:ital,wght@0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Nanum Brush Script', cursive !important;
+    font-family: 'Poppins', sans-serif; */
 }
 body {
     /* display: flex !important;
@@ -12,6 +16,7 @@ body {
     justify-content: center !important; */
     min-height: 100vh;
     background: #e3f2fd;
+    /* font-size: 1.6rem !important; */
 }
 
 /* Custom CSS for table spacing and width */

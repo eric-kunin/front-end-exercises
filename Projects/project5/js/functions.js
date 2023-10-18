@@ -20,5 +20,6 @@ function formatNumber(number) {
     // Convert the string back to a number to remove leading zeros
     return parseFloat(formattedNumber);
   }
+
   
 export { extractTextWithinParentheses, formatNumber };

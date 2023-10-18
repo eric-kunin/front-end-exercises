@@ -1,6 +1,53 @@
 import { CurrencyObj } from './currency.js';
-import { extractTextWithinParentheses, formatNumber } from './functions.js';
+import { extractTextWithinParentheses, formatNumber} from './functions.js';
+// the "DOMContentLoaded" event to occur before executing the provided function.
+document.addEventListener("DOMContentLoaded", function () {
+  var inputeStockChanceRiskRatio = document.getElementById("stockChanceRiskRatio");
+  var inputeStockStopLose = document.getElementById("stockStopLose");
+  var inputeStockQuantity = document.getElementById("stockQuantity");
+  var inputeStockEnterTakeProfit = document.getElementById("stockEnterTakeProfit");
+  var submitButton = document.getElementById("submitButton");
+  function toggleSubmitButton() {
+    var valueStockStopLose = inputeStockStopLose.value.trim();
+    var valueStockChanceRiskRatio = inputeStockChanceRiskRatio.value.trim();
 
+    if (valueStockStopLose === "") {
+      inputeStockChanceRiskRatio.setAttribute("required", "required");
+      inputeStockQuantity.setAttribute("required", "required");
+      inputeStockEnterTakeProfit.setAttribute("required", "required");
+      // submitButton.disabled = false;
+    } else {
+      inputeStockChanceRiskRatio.removeAttribute("required");
+    }
+
+    if (valueStockChanceRiskRatio === "") {
+      inputeStockStopLose.setAttribute("required", "required");
+      inputeStockQuantity.setAttribute("required", "required");
+      inputeStockEnterTakeProfit.setAttribute("required", "required");
+    } else {
+      inputeStockStopLose.removeAttribute("required");
+    }
+
+    if (valueStockStopLose !== "" && valueStockChanceRiskRatio !== "") {
+      inputeStockQuantity.removeAttribute("required");
+      inputeStockEnterTakeProfit.removeAttribute("required");
+    }
+    
+    // Enable or disable the submit button
+    // submitButton.disabled = (inputeStockStopLose.value === "" || inputeStockChanceRiskRatio.value === "");
+  }
+
+  // Trigger the function on page load
+  toggleSubmitButton();
+
+  // Check the input fields every 1000 milliseconds (1 second)
+  setInterval(toggleSubmitButton, 500);
+  
+  // Check the input fields when the page loads
+  inputeStockChanceRiskRatio.addEventListener("input", toggleSubmitButton);
+  inputeStockEnterTakeProfit.addEventListener("input", toggleSubmitButton);
+  inputeStockQuantity.addEventListener("input", toggleSubmitButton);
+});
 // the "DOMContentLoaded" event to occur before executing the provided function.
 document.addEventListener("DOMContentLoaded", function () {
     // Add an event listener to the form's submit button
@@ -42,8 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // RangeBetween = 100 - 90 = 10
       let RangeBetween,Q;
       // Check if the checkbox is checked
-      if (isNaN(stockStopLose)) {
-        if (checkbox.checked) { // Checkbox is checked as long
+      if(isNaN(stockStopLose)) {
+        if(checkbox.checked) { // Checkbox is checked as long
           // This code will run if stockStopLose is NaN
           // stockStopLose = 100 - (50 / 5)
           // stockStopLose = 90

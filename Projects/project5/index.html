@@ -3,6 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./img/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./img/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#2b5797" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" href="./css/trade.css" />
     <script type="module" src="./js/trade.js" defer></script>
     <!-- <script type="module" src="./js/currency.js" defer></script>
@@ -59,6 +80,13 @@
                 placeholder="90"
                 min="0"
               />
+              <!-- checking... -->
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">
+                Please enter information for "Quantity you have" and "Risk
+                ratio" to find "Stop lose". Or just "Stop lose" and "Quantity
+                you have" to find "RR".
+              </div>
             </div>
           </div>
         </div>
@@ -91,7 +119,7 @@
               >
               <input
                 type="number"
-                name="stockRisk"
+                name="stockChanceRiskRatio"
                 id="stockChanceRiskRatio"
                 class="form-control margin-down"
                 step="0.01"
@@ -102,6 +130,13 @@
                 data-bs-toggle="tooltip"
                 data-bs-original-title="Do not enter a number like 1.5 or 2 to find RR, if you have a Take Profit price"
               />
+              <!-- checking... -->
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">
+                Please enter information for "Quantity you have" and "Risk
+                ratio" to find "Stop lose". Or just "Stop lose" and "Quantity
+                you have" and "Enter Take Profit price" to find "RR".
+              </div>
               <!-- <select
                 name="stockRisk"
                 id="stockRisk"
@@ -123,7 +158,8 @@
         <div class="row">
           <div class="col-md-5">
             <div class="form-group">
-              <label for="stockPrice">Enter the quantity you have:</label><br />
+              <label for="stockQuantity">Enter the quantity you have:</label
+              ><br />
               <input
                 type="number"
                 id="stockQuantity"
@@ -136,6 +172,13 @@
                 placeholder="5"
                 min="0"
               />
+              <!-- checking... -->
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">
+                Please enter information for "Quantity you have" and "Risk
+                ratio" to find "Stop lose". Or just "Stop lose" and "Quantity
+                you have" and "Enter Take Profit price" to find "RR".
+              </div>
             </div>
           </div>
           <div class="col-md-3">
@@ -174,6 +217,13 @@
                 placeholder="115"
                 min="0"
               />
+              <!-- checking... -->
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">
+                Please enter information for "Quantity you have" and "Risk
+                ratio" to find "Stop lose". Or just "Stop lose" and "Quantity
+                you have" and "Enter Take Profit price" to find "RR".
+              </div>
             </div>
           </div>
         </div>
@@ -229,7 +279,12 @@
         </div>
         <!-- </div> -->
         <div class="button-container">
-          <input type="submit" class="btn btn-success" value="Calculate now!" />
+          <input
+            type="submit"
+            id="submitButton"
+            class="btn btn-success"
+            value="Calculate now!"
+          />
           <input type="reset" class="btn btn-danger" value="Reset" />
         </div>
       </form>
