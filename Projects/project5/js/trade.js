@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
       let stockStopLose = parseFloat(document.getElementById("stockStopLose").value); // Stop lose:
       let stockRiskMoney = parseFloat(document.getElementById("stockRiskMoney").value); // Total amount of money to risk for shares: 50 (without $):
       let stockChanceRiskRatio = parseFloat(document.getElementById("stockChanceRiskRatio").value); // Chance risk ratio (R) per share:
-      let stockEnterTakeProfit = parseFloat(document.getElementById("stockEnterTakeProfit").value); // Enter Take Profit price to find R: (Risk/Reward Ratio):
       let stockCurrency = document.getElementById("stockCurrency").value; // Currency
       let stockFinancial = parseFloat(document.getElementById("stockFinancial").value); // 3000$
       let stockQuantity = document.getElementById("stockQuantity").value; // Enter the quantity you have:
@@ -75,12 +74,18 @@ document.addEventListener("DOMContentLoaded", function () {
       let temp_stockFinancial = stockFinancial; // temp variable
       let RR; // Risk ratio 
       let temp_stockTakeProfit = stockTakeProfit;
-      // Use the logical OR operator to assign temp_stockTakeProfit if stockEnterTakeProfit is NaN
-      stockEnterTakeProfit = isNaN(stockEnterTakeProfit) ? temp_stockTakeProfit : stockEnterTakeProfit;
+
+      // Attempt to get the stockEnterTakeProfit element by ID
+      let stockEnterTakeProfitElement = document.getElementById("stockEnterTakeProfit");
+
+      // Use the logical OR operator to assign temp_stockTakeProfit if stockEnterTakeProfitElement is null or its value is NaN
+      let stockEnterTakeProfit = stockEnterTakeProfitElement ? parseFloat(stockEnterTakeProfitElement.value) : temp_stockTakeProfit;
+
       // stockFindRRR is take profile price to find RRR
       if (isNaN(stockChanceRiskRatio)){
         // RR = (115 - 100) / 10
         RR = Math.abs((stockEnterTakeProfit - stockPrice) / RangeBetween);
+        // console.log(`Take profit: ${stockEnterTakeProfit} and stock price is ${stockPrice} and Range between is ${RangeBetween}`);
         stockChanceRiskRatio = RR;
       } 
       // stockEarnPerTrade = 50 * 1.5 = 75
@@ -88,11 +93,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (stockPrice >= stockStopLose) {
         // stockTakeProfit = 100 + 10 * 1.5 = 115 as long
-        stockTakeProfit = stockPrice + SL * stockChanceRiskRatio;
+        stockTakeProfit = stockPrice + RangeBetween * stockChanceRiskRatio;
         stockTypePosition = "Long";
       } else {
         // stockTakeProfit = 100 - 10 * 1.5 = 85 as sort
-        stockTakeProfit = stockPrice - SL * stockChanceRiskRatio;
+        stockTakeProfit = stockPrice - RangeBetween * stockChanceRiskRatio;
         stockTypePosition = "Sort";
       }
       
@@ -136,6 +141,6 @@ document.addEventListener("DOMContentLoaded", function () {
       Currency.textContent = stockCurrency;
       TypeCurrency.textContent = CurrencyObj[stockCurrency];
       RiskRecommended.textContent = stockFinancial + SymbolCurrency;
-      RiskRatio.textContent = "1:" + formatNumber(stockRisk);
+      RiskRatio.textContent = "1:" + formatNumber(stockChanceRiskRatio);
     });
   });
