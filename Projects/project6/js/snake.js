@@ -59,6 +59,15 @@ const initGame = () => {
         localStorage.setItem("high-score", highScore);
         scoreElement.innerText = `${score}`;
         highScoreElement.innerHTML = `${highScore}`;
+
+        // Remove the "animate" class to reset the animation
+        gameModal.classList.remove('animate');
+
+        // Trigger reflow (force a reflow) to reapply the animation
+        void gameModal.offsetWidth;
+
+        // Add the "animate" class back to trigger the animation again
+        gameModal.classList.add('animate');
         
     }
 

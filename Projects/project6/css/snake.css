@@ -33,11 +33,14 @@ body {
     display: flex;
     justify-content: center;
     position: fixed;
+}
+
+/* animation for game-modal class */
+.animate {
     animation-name: display-animation;
     animation-duration: 1s;
     animation-fill-mode: forwards;
 }
-
 
 /* The animation code */
 @keyframes display-animation {
