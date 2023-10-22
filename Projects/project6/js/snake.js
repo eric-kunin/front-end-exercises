@@ -5,11 +5,12 @@ const playBoard = document.querySelector(".play-board");
 
 let gameOver = false;
 let foodX, foodY;
-let snakeX = 5, snakeY = 10;
+let snakeX = 10, snakeY = 10;
 let snakeBody = [];
 let velocityX = 0, velocityY = 0;
 let setIntervalId;
-let score = 0;
+var score = 0;
+var speed = 210;
 
 // Getting high score from the local storage
 let highScore = localStorage.getItem("high-score") || 0;
@@ -17,8 +18,11 @@ highScoreElement.innerHTML = `${highScore}`;
 
 const changeFoodPosition = () => {
     // Passing a random 0 - 30 value as food position
-    foodX = Math.floor(Math.random() * 30) + 1;
-    foodY = Math.floor(Math.random() * 30) + 1;
+    foodX = Math.floor(Math.random() * 50) + 1;
+    foodY = Math.floor(Math.random() * 50) + 1;
+
+    foodX2 = Math.floor(Math.random() * 30) + 1;
+    foodY2 = Math.floor(Math.random() * 30) + 1;
 }
 
 const handleGameOver = () => {
@@ -45,13 +49,27 @@ const changeDirection = (e) => {
     }
 }
 
+const getSpeed = () => {
+    // Adjust the speed based on the score
+    speed = speed - 5;
+
+    // Clear the existing interval
+    clearInterval(setIntervalId);
+    // Set a new interval with the updated speed
+    setIntervalId = setInterval(initGame, speed);
+    return speed;
+}
+
 const initGame = () => {
     if(gameOver) return handleGameOver();
     let htmlMarkup = `<div class="food" style="grid-area: ${foodY} / ${foodX}"></div>`;
+    htmlMarkup += `<div class="food" style="grid-area: ${foodY2} / ${foodX2}"></div>`;
+
 
     // checking if the snake hit the food
-    if(snakeX === foodX && snakeY === foodY) {
+    if(snakeX === foodX && snakeY === foodY || snakeX === foodX2 && snakeY === foodY2) {
         changeFoodPosition();
+        getSpeed();
         snakeBody.push([foodX, foodY]); // Pushing food position to snake body array
         score++; // increment score by 1
 
@@ -59,7 +77,7 @@ const initGame = () => {
         localStorage.setItem("high-score", highScore);
         scoreElement.innerText = `${score}`;
         highScoreElement.innerHTML = `${highScore}`;
-
+        // console.log(speed);
         // Remove the "animate" class to reset the animation
         gameModal.classList.remove('animate');
 
@@ -83,7 +101,7 @@ const initGame = () => {
     snakeY += velocityY;
 
     // Checking if the snake's head is out of wall, if so setting gameOver to true
-    if(snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30) {
+    if(snakeX <= 0 || snakeX > 50 || snakeY <= 0 || snakeY > 50) {
         gameOver = true;
     }
 
@@ -99,5 +117,6 @@ const initGame = () => {
 }
 
 changeFoodPosition();
-setIntervalId = setInterval(initGame,125);
+getSpeed();
+setIntervalId = setInterval(initGame,getSpeed());
 document.addEventListener("keydown", changeDirection);
