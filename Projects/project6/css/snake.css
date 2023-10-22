@@ -1,0 +1,74 @@
+/* Import Google font */
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap'); */
+@import url('https://fonts.cdnfonts.com/css/clean-up-your-mess');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'clean up your mess', sans-serif;
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: linear-gradient(to top right, #18163e 0%, #2e2c60 100%);
+}
+.container {
+    width: 65vmin;
+    height:70vmin;
+    background: #070916;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    /* flex-direction: column; */
+    
+}
+.game-modal {
+    color: #e0e5eb;
+    font-size: 15.5rem;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    animation-name: display-animation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+
+/* The animation code */
+@keyframes display-animation {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+
+.game-modal span{
+    font-size: 11.5rem;
+    vertical-align: 30px !important;
+    
+}
+
+.play-board{
+    width:100%;
+    height: 100%;
+    display: grid;
+    grid-template: repeat(30, 1fr) / repeat(30, 1fr);    
+    background: #070916;
+    
+}
+.play-board .food {
+    background: #7c2f53;
+}
+.play-board .head {
+    background: #7d49bb;
+}
