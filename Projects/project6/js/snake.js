@@ -10,7 +10,7 @@ let snakeBody = [];
 let velocityX = 0, velocityY = 0;
 let setIntervalId;
 var score = 0;
-var speed = 210;
+var speed = 125;
 
 // Getting high score from the local storage
 let highScore = localStorage.getItem("high-score") || 0;
@@ -51,11 +51,12 @@ const changeDirection = (e) => {
 
 const getSpeed = () => {
     // Adjust the speed based on the score
-    speed = speed - 5;
+    speed = speed - 1;
 
     // Clear the existing interval
     clearInterval(setIntervalId);
     // Set a new interval with the updated speed
+    // console.log(`speed is: ` + speed);
     setIntervalId = setInterval(initGame, speed);
     return speed;
 }
@@ -64,8 +65,7 @@ const initGame = () => {
     if(gameOver) return handleGameOver();
     let htmlMarkup = `<div class="food" style="grid-area: ${foodY} / ${foodX}"></div>`;
     htmlMarkup += `<div class="food" style="grid-area: ${foodY2} / ${foodX2}"></div>`;
-
-
+    
     // checking if the snake hit the food
     if(snakeX === foodX && snakeY === foodY || snakeX === foodX2 && snakeY === foodY2) {
         changeFoodPosition();
@@ -117,6 +117,6 @@ const initGame = () => {
 }
 
 changeFoodPosition();
-getSpeed();
-setIntervalId = setInterval(initGame,getSpeed());
+// getSpeed();
+setIntervalId = setInterval(initGame,125);
 document.addEventListener("keydown", changeDirection);
