@@ -11,7 +11,9 @@ let velocityX = 0, velocityY = 0;
 let setIntervalId;
 var score = 0;
 var speed = 125;
-
+let incrementFood;
+let incrementHtmlMarkup = '';
+// let temp;
 // Getting high score from the local storage
 let highScore = localStorage.getItem("high-score") || 0;
 highScoreElement.innerHTML = `${highScore}`;
@@ -24,6 +26,20 @@ const changeFoodPosition = () => {
     foodX2 = Math.floor(Math.random() * 30) + 1;
     foodY2 = Math.floor(Math.random() * 30) + 1;
 }
+
+// const incrementFoodPosition = () => {
+//     if (score >= 5) {
+//         incrementFood = Math.floor(score / 5);
+//         // let incrementHtmlMarkup = ''; // Initialize as an empty string
+//         for (let i = incrementFood; i > 0; i--) {
+//             incrementFoodX = Math.floor(Math.random() * 30) + 1;
+//             incrementFoodY = Math.floor(Math.random() * 30) + 1;
+//             incrementHtmlMarkup += `<div class="food" style="grid-area: ${incrementFoodY} / ${incrementFoodX}"></div>`;
+//             // playBoard.innerHTML += incrementHtmlMarkup; // Append the HTML to playBoard
+//         }
+//     }
+// }
+
 
 const handleGameOver = () => {
     // Clearing the timer and reloading the page on game over
@@ -72,7 +88,9 @@ const initGame = () => {
         getSpeed();
         snakeBody.push([foodX, foodY]); // Pushing food position to snake body array
         score++; // increment score by 1
-
+        // temp = score;
+        // console.log(`temp is: `+temp);
+        // incrementFoodPosition();
         highScore = score >= highScore ? score : highScore;
         localStorage.setItem("high-score", highScore);
         scoreElement.innerText = `${score}`;
